@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SanctionMapper">
+	<insert id="insertSanction" parameterType="SanctionDTO">
+		INSERT
+		INTO sanction (saNum, userid,coNum,startDate,saType,endDate)
+		VALUES (SANCTION_NUM.NEXTVAL,#{userid},#{coNum},
+				SYSDATE,#{saType},
+		<choose>
+			<when test="saDate==999">
+					TO_DATE('3000-12-31','yyyy-mm-dd'))
+			</when>
+			<when test="endDate == null">
+					SYSDATE+(INTERVAL '${saDate}' DAY))
+			</when>
+			<when test="endDate != null">
+					(SELECT MAX(endDate) 
+					FROM sanction 
+					WHERE userid=#{userid})+(INTERVAL '${saDate}' DAY))
+			</when>
+		</choose>
+	</insert>
+	
+	<select	id="getSanctionReasonByUserid" parameterType="string" resultType="int">        
+		SELECT satype
+		FROM sanction 
+		WHERE endDate=(SELECT MAX(endDate) 
+            		   FROM sanction 
+            		   WHERE userid=#{userid})
+      		  AND userid=#{userid}
+	</select>
+	
+	<select id="sanctionList" parameterType="string" resultType="SanctionDTO">
+		SELECT *
+		FROM sanction
+		WHERE userid=#{userid}
+	</select>
+
+	<select id="getEndDateByUserid" parameterType="string" resultType="String">
+		SELECT MAX(endDate) 
+		FROM sanction 
+		WHERE userid=#{userid}
+	</select>
+	
+	<select id="isSanctioned" parameterType="string" resultType="double">
+		SELECT NVL(SYSDATE - (SELECT MAX(enddate) 
+						  FROM sanction 
+						  WHERE userid=#{userid})
+				   , 0.0)
+		FROM DUAL
+	</select>
+</mapper>

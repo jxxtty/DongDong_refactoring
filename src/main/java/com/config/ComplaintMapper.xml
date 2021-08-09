@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ComplaintMapper">
+	<insert id="insertComplaint" parameterType="ComplaintDTO">
+		INSERT 
+		INTO complaint(coNum, coType, coTarget, targetUserid, targetImage, targetTitle, targetContent,
+					   userid, coContent, createDate)
+		VALUES (COMPLAINT_NUM.NEXTVAL, #{coType},#{coTarget}, #{targetUserid}, #{targetImage}, #{targetTitle}, #{targetContent},
+				#{userid},#{coContent},SYSDATE)
+	</insert>
+	
+	<select id="checkDuplication" parameterType="ComplaintDTO" resultType="ComplaintDTO">
+		SELECT *
+		FROM complaint
+		WHERE coTarget=#{coTarget} AND userid=#{userid}
+	</select>
+	
+	<select id="getComplaint" parameterType="int" resultType="ComplaintDTO">
+		SELECT *
+		FROM complaint
+		WHERE coNum=#{coNum}
+	</select>
+	
+	<select id="isAlreadyCompleted" parameterType="ComplaintDTO" resultType="int">
+		SELECT COUNT(*) 
+		FROM complaint 
+		WHERE coYn = 'y' AND coType=#{coType} AND coTarget=#{coTarget}
+	</select>
+	
+	<select id="memberComplaintList" resultType="ComplaintDTO">
+		SELECT *
+		FROM complaint
+		WHERE cotype=1
+	</select>
+	
+	<select id="postComplaintList" resultType="ComplaintDTO">
+		SELECT *
+		FROM complaint
+		WHERE cotype=2
+	</select>
+	
+	<select id="commentComplaintList" resultType="ComplaintDTO">
+		SELECT *
+		FROM complaint
+		WHERE cotype=3
+	</select>
+	
+	<update id="complaintEnd" parameterType="int">
+		UPDATE complaint
+		SET coYn='y', endDate=SYSDATE
+		WHERE coNum=#{coNum}
+	</update>
+	
+	
+</mapper>

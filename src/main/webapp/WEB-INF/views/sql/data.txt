@@ -1,0 +1,166 @@
+//user dummy
+
+INSERT INTO member
+
+VALUES('1', '1', '1번이름', '1번닉네임', '명동', '01011111111', '1111', 'naver.com', 'default_userImg.PNG');
+
+INSERT INTO member
+
+VALUES('2', '2', '2번이름', '2번닉네임', '소공동', '01022222222', '2222', 'naver.com', 'default_userImg.PNG');
+
+INSERT INTO member
+
+VALUES('3', '3', '3번이름', '3번닉네임', '장충동', '01033333333', '3333', 'daum.net', 'default_userImg.PNG');
+
+INSERT INTO member
+
+VALUES('4', '4', '4번이름', '4번닉네임', '명동', '01044444444', '4444', 'hanmail.net', 'default_userImg.PNG');
+
+INSERT INTO member
+
+VALUES('5', '5', '5번이름', '5번닉네임', '명동', '01055555555', '5555', 'naver.com', 'default_userImg.PNG');
+
+INSERT INTO member
+
+VALUES('6', '6', '6번이름', '6번닉네임', '명동', '01066666666', '6666', 'naver.com', 'default_userImg.PNG');
+
+INSERT INTO member
+
+VALUES('7', '7', '7번이름', '7번닉네임', '명동', '01077777777', '7777', 'naver.com' ,'default_userImg.PNG');
+
+INSERT INTO member
+
+VALUES('8', '8', '8번이름', '8번닉네임', '명동', '01088888888', '8888', 'naver.com', 'default_userImg.PNG');
+
+INSERT INTO member
+
+VALUES('9', '9', '9번이름', '9번닉네임', '명동', '01099999999', '9999', 'naver.com', 'default_userImg.PNG');
+
+INSERT INTO member
+
+VALUES('10', '10', '10번이름', '10번닉네임', '명동', '01012341234', '1010', 'gmail.com', 'default_userImg.PNG');
+
+
+
+
+
+//post dummny
+userid : 1 - 명동
+userid : 2 - 소공동
+userid : 3 - 장충동
+userid : 4 - 명동
+userid : 5 - 명동
+userid : 6 - 명동
+userid : 7 - 명동
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '1' , '명동' , 'D' , 'JMW 드라이기 팔아용' , 'JMW MS6001A 로즈골드 색상 팔아요 스크래치1개있고 종암사거리에서 직거래가능해요!' , 50000 , 'JMW드라이기.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '2' , '소공동' , 'D' , '에어팟 프로 유선' , '20.11.05일에 사서 5번정도 사용했습니다. 사놓고 잘 안써서 판매합니다. 월곡역 근처에서 거래가능합니다! ' , 190000 , '에어팟프로유선.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '3' , '장충동' , 'W' , '여성 린넨 빅사이즈 자켓' , '빅사이즈 린넨 자켓 입니다! 촬영용으로 2회 입은게 전부입니다. 직거래는 동대문역에서 가능하고 택배비부담시 택배도 가능합니다' , 7000 , '여성린넨빅사이즈자켓.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '2' , '소공동' , 'L' , '창신리빙 스탠드분리수거함 3단 60L' , '일반형 바구니중 하나가 깨진 흔적 있습니다. 이 점 감안해서 7,000원에 내놓아요~ 인헌중학교앞에서 직거래 가능합니다.' , 7000 , '스탠드분리수거함.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '3' , '장충동' , 'BK' , '세계문학책시루 그레이트북스' , '우리애가 엄청 좋아했던 책이에요 중학생돼서 내놓습니다 깨끗해요^^' , 100000 , '세계문학책시루.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '1' , '명동' , 'W' , '[새거급]메트로시티 가방' , '시착만 해보고 계속 안쓰고 보관해둔 새거입니다ㅠ 40만원대고 애착가방만 들고다니다보니 사놓고 집밖으로 가지고나간적이 없어요. 정품확실하고 더스트백은 있어요' , 170000, '메트로시티가방.jpg', 0 , SYSDATE,'0','3');
+
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '1' , '명동' , 'H' , '집순이 벌룬 빈백' , '집순이 벌룬빈백입니다.. 집에서 사용하려고 구입했는데 집이 좁아서 안될것같아 판매합니다. 색상은 사진처럼 레드입니다. 필요하신분 문의해주세요~~^^' , 12000, '집순이벌룬빈백.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '2' , '소공동' , 'PET' , '강아지 노즈워크 장난감 내놓습니다!' , '1개월전 구입 상태양호' , 5000, '강아지노즈워크장난감.PNG', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '3' , '장충동' , 'E' , '메이크업 마네킹 팔아요' , '메이크업 국가자격증(속눈썹연장, 수염) 마네킹 팔아요 연장 연습용으로도 좋아요' , 10000, '메이크업마네킹.jpg', 0 , SYSDATE,'0','3');
+
+commit;
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '2' , '소공동' , 'D' , '레오폴드 750r 저소음 적축 키보드' , '작년 중순 쯤 미개봉품으로 중고나라에서 구입했는데 텐키리스라 불편해서 내놉니다. 매봉역,수서역에서 직거래 가능하고 택배는 +4000 우체국으로 보내드려요' , 75000, '저소음적축키보드.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '1' , '명동' , 'M' , '정품 스톤아일랜드 니트' , '몇번 입질 않아서 상태좋지만 미세하자가 있습니다. 실착시 안보이는 부분이나 참고하시길 바랍니다. 코로나로 인해 택배거래만합니다. 60만원대에 구매해서 저렴히 올렸기에 네고는 사절합니다.' , 120000, '스톤아일랜드니트.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '4' , '명동' , 'H' , '이케아 접이식 의자' , '8개 있습니다. 8개 한번에 구매하시면 개당 5000원으로 네고해드려요. 쿨거래 환영' , 6000, '이케아접이식의자.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '5' , '명동' , 'H' , '카키 흔들의자 (새상품)' , '이사해서 3주정도 눈으로 보기만했습니다. 공간을 넓게쓰고싶어서 원래 구매했던 가격보다 저렴하게 정리하려합니다. 필요하신분 연락주세요. 위치는 위례신도시입니다.' , 250000, '카키흔들의자.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '4' , '명동' , 'M' , '정품 나이키 빅스우시 후드집업' , '옷이 많아서 보관만 하고 입지도 않고해서 판매합니다. 딱히 하자는 없네요. 사이즈M 원가21만원에 구매했습니다. 코로나로 인해 택배거래만 합니다ㅠ 거래시 택배비부담. 네고X' , 70000, '나이키후드집업.jpg', 0 , SYSDATE,'0','3');
+
+commit;
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '4' , '명동' , 'BT' , '샤넬 알뤼르 옴므 블랑쉐 애프터 쉐이브 로션 100ml 새제품' , '샤넬 알뤼르 옴므 블랑쉐 애프터 쉐이브 로션 100ml 새제품입니다. 향수 아니고 애프터 쉐이브 로션입니다. 미사용 새제품 입니다.' , 48000, '샤넬애프터쉐이브로션.jpg', 0 , SYSDATE,'0','3');
+
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '4' , '명동' , 'S' , '삼천리 하이브리드 자전거 팝니다(어워드)' , '삼천리 어워드21단 팝니다. 하이브리드 자전거구요, 산지 2일정도 됐습니다ㅠㅠ 생일선물로 자전거 좋은걸 받아서 팝니다. 원래가격은 할인해서 257000원! 픽업해서 집으로 가져온게 전부인 새제품입니다. 남부터미널 근처에서 직거래합니다. 쿨거래시 네고해드려요:)' , 200000, '삼천리자전거.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '5' , '명동' , 'G' , '영창fenix 입문용 기타' , '배워보려고 구매했으나 거의 사용안함. 악세사리 모두 드리요 입문용으로 좋아요' , 30000, '영창기타.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '5' , '명동' , 'D' , '지포스 GTX 1060 컬러풀 판매합니다.' , '1080으로 바꾸게되면서 판매합니다. 최근까지 잘 사용한 제품입니다. 다나와에서 24만원 주고 산 제품입니다. 명동역, 충무로역에서 직거래가능합니다.' , 100000, '지포스1060.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '4' , '명동' , 'L' , '스타우드 미니냄비 팔아요' , '미니냄비로 계란찜 용도로 딱 좋아요.' , 25000, '스타우드미니냄비.jpg', 0 , SYSDATE,'0','3');
+
+commit;
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '4' , '명동' , 'P' , '식물호야' , '호야~토분포함 반품X 직거래O' , 10000, '식물호야.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '2' , '소공동' , 'P' , '산세베리아' , '분갈이하고 3년정도 키웠습니다. 새끼순들이 올라오는 것도 있고 많이 자란것들도 있습니다. 집근처에서 직거래합니다. 채팅주세요' , 30000, '산세베리아.jpg', 0 , SYSDATE,'0','3');
+
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '3' , '장충동' , 'L' , '향균 도마 (캄포나무)' , '만든지 며칠 안되었네요 나무향이 너무 좋아요^^ 단단하고 세균억제 특성이 있어 도마로 아주 좋습니다 길이40cm, 폭18cm. 택배거래합니다^^ ' , 22000, '캄포나무도마.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '5' , '명동' , 'T' , '[티켓] 뮤지컬 시카고 5/4 R석 2장' , '뮤지컬 시카고 티켓2장 5월4일 화요일 7:30 R석, 좌석은 당일 매표소에서 좌석권으로 교환하는 티켓입니다. 정가 장당 12만원이고 2장 14만원에 일괄판매합니다.(장당 7만원). 2장 한번에 거래하시는분 우대합니다.' , 140000, '시카고티켓.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '4' , '명동' , 'E' , 'god 음반' , 'god chpater8 CD입니다. 사용 전혀안하고 보관만 하고 있었어요~' , 18000, 'god음반.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '6' , '명동' , 'D' , '동양매직 전자레인지 5천원' , '동양매직 전자레인지 팝니다. 사용감 있지만 나름 상태 깨끗합니다. 을지로입구역에서 직거래합니다.' , 5000, '동양매직전자레인지.jpg', 0 , SYSDATE,'0','3');
+
+commit;
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '5' , '명동' , 'T' , '신세계상품권 10만원' , '사당역 거래가능합니다.' , 95000, '신세계상품권.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '6' , '명동' , 'H' , '천막 판매합니다.' , '3x2 지붕:브라운 / 벽면:투명베이지 포장마차,테라스,화분온실 등 사용가능해요 천막위쪽에 구멍이 살짝나긴했는데 비가새지는 않음 성인남자 혼자서 설치가능할정도로 설치쉬움 연락주세요' , 50000, '천막.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '7' , '명동' , 'D' , '네스프레소 커피머신' , '18년형 제품이고 제품이상없이 작동 잘됩니다~~ 사용가능한 스타벅스 캡슐 낱개로 4개 있는데 같이드릴게요~! 오산동 비대면 문고리 거래원합니다~' , 20000, '네스프레소커피머신.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '7' , '명동' , 'E' , '필라테스양도(낙성대-에이프릴)' , '이사로인해 낙성대쪽으로 필라테스를 못다닐것같아서 양도합니다! 빠르게 양도하기위해서 1회당 1만원정도로 설정했습니다~ 엄청싸게 내놓는다는걸 아실거에요! 양도비는 제가 부담하겠습니다. 에이프릴필라테스 낙성대점입니다. ' , 950000, '필라테스양도.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '7' , '명동' , 'BK' , '책7권' , '다니엘 페낙 말로센시리즈 7권' , 18000, '책7권.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '7' , '명동' , 'BT' , '샤넬 섀도우' , '한번씩 발색만 해봤어요 거의 새거에요~' , 30000, '샤넬섀도우.jpg', 0 , SYSDATE,'0','3');
+
+commit;
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '5' , '명동' , 'L' , '두잇 시리얼(초코맛)' , '반정도 남았어요~~ 좋아서 계속 사먹다가 이제 물려서.. 더이상은 못먹겠네요ㅠㅠㅋㅋ 스쿱은 안에 넣어져있고 박스는 버려서 없어요! 맛보실분들 연락주세요ㅎㅎ 사당역 이수역 남성역 직거래! 중고물품 교환환불 어려워요^.^~' , 11000, '두잇시리얼.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '5' , '명동' , 'W' , '루이비통 모노그램 몽소' , '루이비통 모노그램 몽소입니다. 27.5*22 사이즈입니다. 사용횟수대비 가죽 상태는 참 좋아요.예민하신분들은 구매 지양해주세요. 구매 후 환불은 불가합니다. 더스트백 챙겨드리겠습니다.' , 200000, '루이비통모노그램몽소.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '5' , '명동' , 'PET' , '물고기 어항' , '물고기어항 팔아요. 어항만 4만원에 샀었구요, 필요하시면 돌맹이, 모형수초, 베타밥, 물갈이약품, 종합개선제 다같이 드려요. 필요하시면 연락주세요.' , 30000, '물고기어항.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '6' , '명동' , 'G' , '골프채 풀 세트 캘러웨이' , '남자골프 풀세트 캘러웨이 워버드 미사용 1050000원에 구매했는데 7일됐음 사정이생겨서ㅠㅠ 급하게 내놓았습니다 골프백까지' , 700000, '골프채풀세트.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '6' , '명동' , 'E' , '좌물쇠' , '자전거 좌물쇠로 썼던거에요 사용감 있구여 튼튼합니당' , 2000, '좌물쇠.jpg', 0 , SYSDATE,'0','3');
+
+commit;
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '5' , '명동' , 'D' , '갤럭시 북12 노트북 i5 WIFI 판매합니다.' , 
+'제품명 :갤럭시북12(SM-W720NZKAKOO) WIFI<br>구성품: 본체, 키보드커버, S펜, 충전기<br><br>갤북 상태는 사진에서 보시는 바와 같이 매우 좋습니다.<br>매우 가볍고 성능이 좋아서 만족도는 최고인 모델입니다. <br><br>중고거래이니 직접 보시고 직거래를 했으면 합니다. 거래는 롯데백화점 본점근처 가능합니다.' 
+, 550000, '갤럭시북.jpg 갤럭시북2.jpg 갤럭시북3.jpg', 0 , SYSDATE,'0','3');
+
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '4' , '명동' , 'L' , 'bsw 와플메이커' , 
+'2번정도 사용한거 같습니다.<br><br>3만원대에 샀어요' 
+, 5000, '와플메이커.jpg 와플메이커2.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '4' , '명동' , 'BT' , '다이슨 에어랩 스타일러 볼륨앤쉐이프 레드' , 
+'박스는 개봉했지만 구매할 때 그대로 박스부터 구성품까지 그대로 있어요<br>구성품을 잘못보고 구매해서 팝니다ㅠ<br><br>정품등록 전이라 구매하시면 정품등록 하시면 되구요, 등록 후 2년간 AS가능합니다.<br>현재 다이슨 홈페이지 가격이 539,000원이고 인터넷 최저가도 49만원이 넘어요<br>같은 아파트단지면 직거래가능하구여 거리있으면 택배거래 선호합니다. 일을하고있어서ㅠ<br>연락주세요^^' 
+, 440000, '에어랩.jpg 에어랩2.jpg 에어랩3.jpg 에어랩4.jpg 에어랩5.jpg', 0 , SYSDATE,'0','3');
+
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '6' , '명동' , 'H' , '(새상품)퀸매트리스 가져가세요' , 
+'새상품이구요.<br>저희집이랑 사이즈가 안맞아서 안쓰고팝니다<br>필요하신분 싸게가져가세요<br>포장지도 그대로입니다.<br>150X200cm<br>직접 오셔서 가져가셔야합니다' 
+, 50000, '매트리스.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '8' , '명동' , 'BT' , '가격내림) 향수/에르메스 향수' , 
+'15ml×4개 (향은 두가지 / 2개씩 들어있어요!!)<br><br>19년도 10월 괌에서 구매<br>두개만 한번씩 시향 해보고 2개는 새거에요~<br>사진 그대로 포장 되어있구요 쇼핑백도 있어요~~!!<br>(백화점보다 저렴하게 내놓는거 참고해주세요~)<br><br>거래는 직거래만/ 을지로입구역<br>환불X 교환X' 
+, 75000, '에르메스향수.jpg 에르메스향수2.jpg 에르메스향수3.jpg', 0 , SYSDATE,'0','3');
+
+INSERT INTO post VALUES(POST_NUM.NEXTVAL, '9' , '명동' , 'BY' , '스토케 v3 익스플로리 유모차' , 
+'상태 좋아요.깨끗하게 잘썼어요. 업소에 세탁 맡긴후 몇 번 못타봤어요.<br><br>구성은 사진에 나와있어요.<br>신생아패드, 가방, 양산, 레인커버, 맘네스트 바람커버, 발판, 안전손잡이, 여름용시트<br><br>명동성당근처에서 거래가능해요.' 
+, 150000, '유모차.jpg 유모차2.jpg 유모차3.jpg 유모차4.jpg', 0 , SYSDATE,'0','3');
+commit;

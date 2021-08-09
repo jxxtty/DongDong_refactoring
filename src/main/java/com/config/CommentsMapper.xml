@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CommentsMapper">
+	<select id="getCommentsByPNum" parameterType="int" resultType="CommentsDTO">
+		SELECT * 
+		FROM (SELECT c.userid "USERID", pNum, cNum, cContent, createDate, 
+					 updateDate, parentNum, cLevel, nickname, userimage 
+			  FROM comments c 
+			  JOIN member m ON c.userid=m.userid) 
+		WHERE pNum=#{pNum}
+		START WITH cLevel = 1
+		CONNECT BY PRIOR cNum = parentNum
+	</select>
+	
+	<select id="getCommentByCNum" parameterType="int" resultType="CommentsDTO">
+		SELECT * 
+		FROM (SELECT c.userid "USERID", pNum, cNum, cContent, createDate, 
+					 updateDate, parentNum, cLevel, nickname, userimage 
+			  FROM comments c 
+			  JOIN member m ON c.userid=m.userid) 
+		WHERE cNum=#{cNum}
+	</select>
+	
+	<insert id="insertComments" parameterType="CommentsDTO">
+		INSERT 
+		INTO comments (pNum, cNum, userid, cContent, createDate, parentNum, cLevel)
+		VALUES (#{pNum},comments_num.NEXTVAL,#{userid},#{cContent},SYSDATE,#{parentNum},#{cLevel})
+	</insert>
+	
+	<update id="updateComment" parameterType="CommentsDTO">
+		UPDATE comments 
+		SET cContent=#{cContent}, updateDate=SYSDATE
+		WHERE cNum=${cNum}
+	</update>
+	
+	<delete id="deleteCommentByCNum" parameterType="int">
+		DELETE
+		FROM comments
+		WHERE cNum IN (SELECT cNum
+					   FROM comments
+					   START WITH cNum=#{cNum}
+					   CONNECT BY PRIOR cNum = parentNum)
+	</delete>
+</mapper>

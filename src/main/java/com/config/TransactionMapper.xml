@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="TransactionMapper">
+	
+	<select id="purchaseList" resultType="PostDTO" parameterType="string">
+	select *
+	from post p, purchase p2
+	where p.pnum = p2.pnum
+	and
+	p2.userid = #{userid}
+	</select>
+	
+	<select id="saleList" resultType="PostDTO" parameterType="string">
+	select *
+	from post p, sale s
+	where p.pnum = s.pnum
+	and
+	s.userid = #{userid}
+	</select>
+	
+	<select id="saleCount" resultType="int" parameterType="string">
+	select count(*)
+	from sale s
+	where userid=#{userid}
+	</select>
+</mapper>

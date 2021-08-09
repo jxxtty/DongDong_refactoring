@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PostMapper">   
+  	
+  	<select id="totalCountCategory" parameterType="hashMap" resultType="int">
+	select count(*)
+	from post
+	where pCategory = #{category}
+	<if test="value != null">
+		AND addr = #{value}
+	</if>
+	</select>
+	
+  	<select id="totalCountKeyword" parameterType="hashMap" resultType="int">
+	select count(*)
+	from post
+	WHERE pTitle LIKE '%'||#{keyword}||'%'
+	<if test="value != null">
+		AND addr = #{value}
+	</if>
+	</select>
+	
+	
+	<select id="totalCount" parameterType="string" resultType="int">
+	select count(*)
+	from post
+	<if test="value != null">
+		where addr = #{value}
+	</if> 
+	</select>
+   
+	<select id="postListByAddr" parameterType="string" resultType="PostDTO">
+		select PNUM
+    , USERID
+    , ADDR
+    , PCATEGORY
+    , PTITLE
+    , PCONTENT
+    , PPRICE
+    , PIMAGE
+    , PHIT
+    , PDATE 
+    ,TRUNC((SYSDATE-PDATE) * 24 * 60) AS PDATEDIFF
+       from post
+       where addr = #{addr}
+       order by pDate desc
+
+	</select>
+	
+	<select id="postListAll"  resultType="PostDTO">
+	select PNUM
+    , USERID
+    , ADDR
+    , PCATEGORY
+    , PTITLE
+    , PCONTENT
+    , PPRICE
+    , PIMAGE
+    , PHIT
+    , PDATE 
+    ,TRUNC((SYSDATE-PDATE) * 24 * 60) AS PDATEDIFF
+    , pPull
+       from post
+       order by pDate desc
+        
+	</select>	
+	
+	<select id="getPostByPNum" parameterType="int" resultType="PostDTO">
+		select * 
+		from post
+		WHERE pNum=#{pNum}
+	</select>
+	
+	<update id="updatePost" parameterType="PostDTO">
+		update post 
+		set pTitle=#{pTitle},pContent=#{pContent},pPrice=#{pPrice},pImage=#{pImage},pCategory=#{pCategory}
+		where pNum=#{pNum}
+	</update>
+	
+	<update id="updatePHit" parameterType="PostDTO">
+		update post 
+		set pHit=#{pHit}
+		where pNum=#{pNum}
+	</update>
+	
+	<delete id="deletePostByPNum" parameterType="int">
+		delete 
+		from post
+		where pNum=#{pNum}
+	</delete>
+	
+	<insert id="newPost" parameterType="PostDTO">
+		INSERT INTO post
+		VALUES (POST_NUM.NEXTVAL, #{userid}, #{addr}, #{pCategory}, #{pTitle}, #{pContent}, #{pPrice}, #{pImage}
+		,#{pHit}, SYSDATE, #{pStatus}, #{pPull})
+	</insert>
+	
+
+	<select id="searchByKeyword" resultType="PostDTO" parameterType="hashMap">
+		SELECT pNum, userid, addr, pCategory, pTitle, pContent, pPrice, pImage, pHit, pDate
+    		,TRUNC((SYSDATE-pDate) * 24 * 60) AS pDateDiff, pPull
+    	FROM post 
+		WHERE pTitle LIKE '%'||#{keyword}||'%'
+		<if test="value != null">
+			AND addr = #{value}
+		</if>
+		 order by pDate desc
+	</select>
+
+	<select id="mypostList" parameterType="string" resultType="PostDTO">
+		select *
+       	from post
+       	where userid = #{userid}
+	</select>
+	
+	<delete id="postAllDel" parameterType="arraylist">
+		delete from post
+		where pNum in
+		<foreach item="item"  collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<select id="searchByCategory" resultType="PostDTO" parameterType="hashMap">
+		SELECT pNum, userid, addr, pCategory, pTitle, pContent, pPrice, pImage, pHit, pDate
+    		,TRUNC((SYSDATE-pDate) * 24 * 60) AS pDateDiff, pPull
+    	FROM post 
+		WHERE pCategory = #{category}
+		<if test="value != null">
+			AND addr = #{value}
+		</if>
+		order by pDate desc
+	</select>
+	
+	<update id="pullPost" parameterType="PostDTO">
+		UPDATE post SET pDate=SYSDATE, pPull=#{pPull} WHERE pNum=#{pNum}
+	</update>
+	
+	<update id="poststatus" parameterType="int">
+		update post 
+		set pStatus= '1'
+		where pNum=#{pNum}
+	</update>
+	
+
+</mapper>

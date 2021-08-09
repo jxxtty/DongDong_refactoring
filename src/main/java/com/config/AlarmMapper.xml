@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AlarmMapper">   
+  	
+  	<insert id="newAlarm" parameterType="Alarm">
+		INSERT INTO alarm
+		VALUES (ALARM_NUM.NEXTVAL, #{sender}, #{receiver}, #{type}, #{info}, #{detail}, #{isRead}, SYSDATE)
+		<selectKey keyProperty="aNum" resultType="int" order="AFTER"> 
+			SELECT ALARM_NUM.CURRVAL FROM DUAL 
+		</selectKey>
+	</insert>
+	
+	<select id="getMyAlarm" parameterType="String" resultType="Alarm">
+		SELECT * FROM alarm WHERE receiver = #{receiver}
+	</select>
+	
+	<select id="getAlarm" parameterType="int" resultType="Alarm">
+		SELECT * FROM alarm WHERE aNum = #{aNum}
+	</select>
+	
+	<delete id="deleteAlarmOne" parameterType="int">
+		DELETE FROM alarm WHERE aNum = #{aNum}
+	</delete>
+	
+	<update id="readAlarmOne" parameterType="int">
+		UPDATE alarm
+		SET isRead = 1
+		WHERE aNum = #{aNum}
+	</update>
+	
+	<select id="myAlarmListFive" parameterType="string" resultType="Alarm">
+		SELECT * FROM (SELECT * FROM alarm ORDER BY aDate DESC) WHERE receiver = #{userid} AND isRead = 0 
+	</select>
+	
+	<delete id="deleteAlarmAll" parameterType="arraylist">
+		DELETE FROM alarm
+		WHERE aNum IN
+		<foreach item="item" collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<update id="readAlarmAll" parameterType="arraylist">
+		UPDATE alarm
+		SET isRead = 1
+		WHERE aNum IN
+		<foreach item="item" collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+	
+</mapper>

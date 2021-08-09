@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FavoriteMapper">
+	
+	<select id="favoriteList" resultType="PostDTO" parameterType="string">
+	select *
+	from post p, favorite f
+	where p.pnum = f.pnum
+	and
+	f.userid = #{userid}
+	</select>
+
+	<select id="getFavoriteCountByPNum" parameterType="int" resultType="int">
+	select count(*)
+	from favorite
+	where pNum=#{pNum}
+	</select>
+
+	<select id="getFavorite" resultType="FavoriteDTO" parameterType="FavoriteDTO">
+		select *
+		from favorite
+		where userid = #{userid} AND pNum=#{pNum}
+	</select>
+
+	<insert id="insertFavoite" parameterType="FavoriteDTO">
+		insert
+		into favorite (pNum, userid)
+		values (#{pNum},#{userid})
+	</insert>
+	
+	<delete id="deleteFavoite" parameterType="FavoriteDTO">
+		delete
+		from favorite
+		where pNum=#{pNum} and userid=#{userid}
+	</delete>
+	
+	<delete id="favoriteDel" parameterType="int">
+	delete
+	from
+	favorite
+	where pNum = #{pNum}
+	</delete>
+	
+	<delete id="favoriteAllDel" parameterType="arraylist">
+	delete from favorite
+	where pNum in
+	<foreach item="item"  collection="list" open="(" separator="," close=")">
+		#{item}
+	</foreach>
+	</delete>
+	
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="OrderSheetMapper">
+	
+	<insert id="OrderSheetAdd"  parameterType="OrderSheetDTO" >
+	INSERT INTO ORDERSHEET 
+	VALUES (ORDERSHEET_NUM.NEXTVAL, #{pNum}, #{sUserid}, #{bUserid}, #{oAddr},
+	 #{oPrice}, #{oMessage}, SYSDATE)
+	</insert>
+   
+    <select id="ordersheetList" resultType="MyOrderSheetDTO" parameterType="string">
+	select oNum, o.pNum pNum, sUserid, bUserid, oAddr, oPrice, oMessage, oDate, pTitle, pImage from 
+	ordersheet o, post p
+	where 
+	o.pnum = p.pnum and suserid = #{userid}
+	</select>
+    
+    <select id="myordersheetList" resultType="MyOrderSheetDTO" parameterType="string">
+	select oNum, o.pNum pNum, sUserid, bUserid, oAddr, oPrice, oMessage, oDate, pTitle, pImage from 
+	ordersheet o, post p
+	where 
+	o.pnum = p.pnum and buserid = #{userid}
+	</select>
+    
+	<delete id="orderDel" parameterType="int">
+	delete
+	from
+	ordersheet
+	where oNum = #{oNum}
+	</delete>
+	
+	<delete id="orderAllDel" parameterType="arraylist">
+	delete from ordersheet
+	where oNum in
+	<foreach item="item"  collection="list" open="(" separator="," close=")">
+		#{item}
+	</foreach>
+	</delete>
+	
+	<select id="message" resultType="MyOrderSheetDTO" parameterType="string">
+	select oNum, sUserid, o.bUserid, oAddr, oPrice, oMessage, oDate, userImage, nickName, pNum from 
+	ordersheet o, member m
+	where 
+	o.buserid = m.userid and oNum = #{oNum}
+	</select>
+	
+	<insert id="purchase"  parameterType="PurchaseDTO" >
+	INSERT INTO purchase 
+	VALUES (#{pNum}, #{userid})
+	</insert>
+	
+	<insert id="sale"  parameterType="SaleDTO" >
+	INSERT INTO sale 
+	VALUES (#{pNum}, #{userid})
+	</insert>
+	
+	<delete id="ordercomplete" parameterType="int">
+	delete
+	from
+	ordersheet
+	where pNum = #{pNum}
+	</delete>
+	
+	<insert id="createChatRoom" parameterType="HashMap">
+	INSERT INTO chatRoom(chatid, buserid, suserid, chathistory) 
+	 Values (#{chatId}, #{bUserid}, #{sUserid}, #{chatHistory})
+	</insert>
+	
+	<select id = "checkChatRoom" parameterType = "String" resultType="int">
+	select count(*) from chatRoom where chatid = #{chatId}
+	</select>
+	
+	<select id="getChatList" parameterType = "String" resultType = "ChatRoom">
+	select * from chatRoom where bUserid = #{chatid} or sUserid = #{chatid}
+	
+	</select>
+</mapper>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+	<mvc:annotation-driven></mvc:annotation-driven><!-- mvc기본태그 -->
+	<mvc:default-servlet-handler/><!-- mvc기본태그 -->
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<mvc:annotation-driven />
+	<task:annotation-driven/>
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<mvc:view-controller path="/" view-name="main"/> <!-- main.jsp -->
+	<mvc:view-controller path="/memberForm" view-name="memberForm"/><!--memberForm.jsp  -->
+	<mvc:view-controller path="/loginForm" view-name="loginForm"/>
+	<mvc:view-controller path="/idSearch" view-name="idSearch"/>
+	<mvc:view-controller path="/pwSearch" view-name="pwSearch"/>
+	<mvc:view-controller path="/postWrite" view-name="postWrite"/><!-- 글쓰기 페이지 -->
+	<mvc:view-controller path="/categoryList" view-name="categorySearch"/><!--카테고리 검색 페이지 -->
+	<mvc:view-controller path="/mypage" view-name="mypage"/><!--mypage.jsp  -->
+	<mvc:view-controller path="checkNick" view-name="checkNick" /> <!--checkNick.jsp  -->
+	<mvc:view-controller path="/confirmNick" view-name="confirmNick" /> <!--confirmNick.jsp  -->
+	<mvc:view-controller path="/okNick" view-name="okNick" /> <!--okNick.jsp  -->
+	<mvc:view-controller path="/addrcheck" view-name="addrcheck" /> <!--addrcheck.jsp  -->
+	<mvc:view-controller path="/withdrawal" view-name="withdrawal" /> <!--addrcheck.jsp  -->
+	<mvc:view-controller path="/favoriteList" view-name="favoriteList" /><!--favoriteList.jsp  -->
+	<mvc:view-controller path="/mypostList" view-name="mypostList" /><!--mypostList.jsp  -->
+	<mvc:view-controller path="/myordersheetList" view-name="myordersheetList" /><!--myordersheetList.jsp  -->
+	<mvc:view-controller path="/ordersheetList" view-name="ordersheetList" /><!--ordersheetList.jsp  -->
+	<mvc:view-controller path="/mypopupmessage" view-name="mypopupmessage" /><!--mypopupmessage.jsp  -->
+	<mvc:view-controller path="/popupmessage" view-name="popupmessage" /><!--popupmessage.jsp  -->
+	<mvc:view-controller path="/userprofile" view-name="userprofile" /><!--userprofile.jsp  -->
+	<mvc:view-controller path="/salecomplete" view-name="salecomplete" /><!--salecomplete.jsp  -->
+	<mvc:view-controller path="/BuyList" view-name="BuyList" /><!--BuyList.jsp  -->
+	<mvc:view-controller path="/SaleList" view-name="SaleList" /><!--SaleList.jsp  -->
+	<mvc:view-controller path="/emailAuth" view-name="emailAuth" /><!--emailAuth.jsp  -->
+	<mvc:view-controller path="/CheckmailAuth" view-name="CheckmailAuth" /><!--checkmailAuth.jsp  -->
+	
+	
+	
+	
+	<mvc:view-controller path="/pullPost" view-name="pullPost" /><!--pullPost.jsp  -->
+	<mvc:view-controller path="/orderSheet" view-name="orderSheet/orderSheet" /><!--orderSheet.jsp  -->
+	<mvc:view-controller path="/orderEndSheet" view-name="orderSheet/orderEndSheet" /><!--orderEndSheet.jsp  -->
+	<mvc:view-controller path="/myAlarm" view-name="myAlarm" /><!--myAlarm.jsp  -->
+	
+	
+
+
+	<!-- interceptor의 사용 -->
+	<beans:bean id="loginCheckInterceptor" class="com.interceptor.LoginCheckInterceptor"></beans:bean>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/loginCheck/**"/>
+			<beans:ref bean="loginCheckInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<beans:bean id="adminCheckInterceptor" class="com.interceptor.AdminCheckInterceptor"></beans:bean>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**"/>
+			<beans:ref bean="adminCheckInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<!-- interceptor의 사용  끝 -->
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<mvc:resources location="/WEB-INF/views/css/" mapping="/css/**" />
+	<mvc:resources location="/WEB-INF/views/js/" mapping="/js/**" />
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
+	<context:component-scan base-package="com.*" />
+
+	<!-- file Upload --><!-- 글쓰기 다중파일 업로드용 -->
+    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- max upload size in bytes -->
+        <beans:property name="maxUploadSize" value="10485760" /> <!-- 10MB --><!-- 5MB  5242880-->
+        <!-- max size of file in memory (in bytes) -->
+        <beans:property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
+    </beans:bean>
+
+</beans:beans>
