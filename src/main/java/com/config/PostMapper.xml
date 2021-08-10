@@ -75,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="updatePost" parameterType="PostDTO">
 		update post 
-		set pTitle=#{pTitle},pContent=#{pContent},pPrice=#{pPrice},pImage=#{pImage},pCategory=#{pCategory}
+		set pTitle=#{pTitle},pContent=#{pContent},pPrice=#{pPrice},pImage=#{pImage},pCategory=#{pCategory},pModifiedDate=SYSDATE
 		where pNum=#{pNum}
 	</update>
 	
@@ -94,7 +94,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="newPost" parameterType="PostDTO">
 		INSERT INTO post
 		VALUES (POST_NUM.NEXTVAL, #{userid}, #{addr}, #{pCategory}, #{pTitle}, #{pContent}, #{pPrice}, #{pImage}
-		,#{pHit}, SYSDATE, #{pStatus}, #{pPull})
+		,#{pHit}, SYSDATE, #{pStatus}, #{pPull}, SYSDATE)
 	</insert>
 	
 

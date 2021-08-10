@@ -43,6 +43,8 @@ REFERENCES member(userid) ON DELETE CASCADE;
 ALTER TABLE post ADD (pStatus VARCHAR2(1));
 update post set pstatus=0;
 
+ALTER TABLE post ADD pModifiedDate Date;
+
 //Favorite, Purchase, Sale
 
 CREATE table Favorite(
