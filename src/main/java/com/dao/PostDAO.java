@@ -42,8 +42,8 @@ public class PostDAO {
 	}
 
 	public int newPost(PostDTO post) {
-		int n = template.insert("PostMapper.newPost", post);
-		return n;
+		template.insert("PostMapper.newPost", post);
+		return post.getpNum();
 	}
 
 	public int updatePost(PostDTO dto) {

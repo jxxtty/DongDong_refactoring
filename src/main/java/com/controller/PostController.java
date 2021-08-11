@@ -27,11 +27,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.CommentsDTO;
 import com.dto.FavoriteDTO;
+import com.dto.ImageDTO;
 import com.dto.MemberDTO;
 import com.dto.PostDTO;
-import com.service.AlarmService;
 import com.service.CommentsService;
 import com.service.FavoriteService;
+import com.service.ImageService;
 import com.service.MemberService;
 import com.service.PostService;
 import com.service.TransactionService;
@@ -50,6 +51,8 @@ public class PostController {
 	CommentsService cService;
 	@Autowired
 	TransactionService tService;
+	@Autowired
+	ImageService iService;
 	
 	@Resource(name="uploadPath")
 	String uploadPath;
@@ -85,31 +88,57 @@ public class PostController {
 		pDto.setpPull("3"); // default로 들어가는 값
 		pDto.setpHit(0); // default로 들어가는 값
 		
-		String dbSave = ""; // db에 저장될 이미지파일이름의 조합
-		for(int i = 0 ; i < fileList.size() ; i++) {
+		
+		String[] fileNames = getFileNameAndSaveFile(fileList, mDto.getUserid());
+		pDto.setpImage(fileNames[0]);
+		int pNum = pService.newPost(pDto);
+		if(fileNames.length != 1) { // 멀티파일의 경우
+			ImageDTO iDto = new ImageDTO();
+			iDto.setpImages(fileNames.length, fileNames);
+			iDto.setpNum(pNum);
+			System.out.println("iDto --> " + iDto.toString());
+			iService.newImages(iDto);
+		}
+		
+		/*
+		 * String dbSave = ""; // db에 저장될 이미지파일이름의 조합 for(int i = 0 ; i <
+		 * fileList.size() ; i++) { MultipartFile mf = fileList.get(i); String
+		 * originalFileName = mf.getOriginalFilename(); // 원본파일 이름 String safeFile =
+		 * uploadPath + System.currentTimeMillis()+"_" + mDto.getUserid() +"_"+ i
+		 * +"_"+originalFileName;
+		 * 
+		 * String dbSaveFile = System.currentTimeMillis()+"_" + mDto.getUserid() +"_"+ i
+		 * +"_"+originalFileName; if(i == fileList.size()-1) { dbSave += dbSaveFile; }
+		 * else { dbSave += dbSaveFile+" "; }
+		 * 
+		 * try { mf.transferTo(new File(safeFile)); } catch (Exception e) {
+		 * e.printStackTrace(); } }
+		 */
+		/*
+		 * pDto.setpImage(dbSave); int n = pService.newPost(pDto);
+		 */
+		complaintLogger.info("PostController postWriteSuccess- userid: "+pDto.getUserid());
+		return "redirect:../"; // main으로 이동하는 경로
+	}
+	
+	public String[] getFileNameAndSaveFile(List<MultipartFile> fileList, String userid) {
+		String[] fileNames = new String[fileList.size()];
+		for(int i = 0 ; i < fileList.size(); i++) {
 			MultipartFile mf = fileList.get(i);
+			
 			String originalFileName = mf.getOriginalFilename(); // 원본파일 이름
-			String safeFile = uploadPath + System.currentTimeMillis()+"_" + mDto.getUserid() +"_"+ i +"_"+originalFileName;
-			
-			String dbSaveFile = System.currentTimeMillis()+"_" + mDto.getUserid() +"_"+ i +"_"+originalFileName;
-			if(i == fileList.size()-1) {
-				dbSave += dbSaveFile;
-			} else {
-				dbSave += dbSaveFile+" ";
-			}
-			
+			String safeFile = uploadPath + System.currentTimeMillis()+"_" + userid +"_"+ i +"_"+originalFileName;
+			String dbSaveFile = System.currentTimeMillis()+"_" + userid +"_"+ i +"_"+originalFileName;
+			fileNames[i] = dbSaveFile;
 			try {
 				mf.transferTo(new File(safeFile));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		pDto.setpImage(dbSave);
-		int n = pService.newPost(pDto);
-		complaintLogger.info("PostController postWriteSuccess- userid: "+pDto.getUserid());
-		return "redirect:../"; // main으로 이동하는 경로
+		
+		return fileNames;
 	}
-	
 	
 	// 글수정 -----------------------------------------------------------
 	

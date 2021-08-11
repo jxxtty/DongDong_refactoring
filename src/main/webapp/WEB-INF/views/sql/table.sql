@@ -45,6 +45,25 @@ update post set pstatus=0;
 
 ALTER TABLE post ADD pModifiedDate Date;
 
+// 다중 이미지 관련
+
+CREATE SEQUENCE image_num;
+
+CREATE TABLE image(
+        iNum NUMBER(10) PRIMARY KEY,
+        pNum NUMBER(10) NOT NULL,
+        pImage2 VARCHAR2(500),
+        pImage3 VARCHAR2(500),
+        pImage4 VARCHAR2(500),
+        pImage5 VARCHAR2(500)
+);
+
+ALTER TABLE image
+ADD CONSTRAINT image_pnum_fk FOREIGN KEY(pNum)
+REFERENCES post(pNum) ON DELETE CASCADE;
+
+
+
 //Favorite, Purchase, Sale
 
 CREATE table Favorite(

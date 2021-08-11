@@ -39,6 +39,7 @@
 				<value>classpath:com/config/ComplaintMapper.xml</value>
 				<value>classpath:com/config/SanctionMapper.xml</value>
 				<value>classpath:com/config/AlarmMapper.xml</value>
+				<value>classpath:com/config/ImageMapper.xml</value>
 			</list>
 		</property>
 		<property name="typeAliases">
@@ -56,6 +57,7 @@
 				<value>com.dto.Alarm</value>
 				<value>com.dto.ChatRoom</value>
 				<value>com.dto.ChatMessage</value>
+				<value>com.dto.ImageDTO</value>
 			</list>
 		</property>
 	</bean>

@@ -19,13 +19,13 @@ public class PostDTO {
 	private String pPull;
 	private String pModifiedDate;
 	
+	
 	public PostDTO() {
 		super();
 	}
 
 	public PostDTO(int pNum, String userid, String addr, String pCategory, String pTitle, String pContent, int pPrice,
-			String pImage, int pHit, String pDate, String pDateDiff, String pStatus, String pPull,
-			String pModifiedDate) {
+			String pImage, int pHit, String pDate, String pDateDiff, String pStatus, String pPull, String pModifiedDate) {
 		super();
 		this.pNum = pNum;
 		this.userid = userid;
@@ -42,9 +42,7 @@ public class PostDTO {
 		this.pPull = pPull;
 		this.pModifiedDate = pModifiedDate;
 	}
-
-
-
+	
 	public int getpNum() {
 		return pNum;
 	}
