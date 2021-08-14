@@ -94,10 +94,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="newPost" parameterType="PostDTO">
 		INSERT INTO post
 		VALUES (POST_NUM.NEXTVAL, #{userid}, #{addr}, #{pCategory}, #{pTitle}, #{pContent}, #{pPrice}, #{pImage}
-		,#{pHit}, SYSDATE, #{pStatus}, #{pPull}, SYSDATE)
-		<selectKey keyProperty="pNum" resultType="int" order="AFTER"> 
-			SELECT POST_NUM.NEXTVAL FROM DUAL 
-		</selectKey>
+		,#{pHit}, SYSDATE, #{pStatus}, #{pPull}, SYSDATE, #{iNum, jdbcType = INTEGER})
 	</insert>
 	
 

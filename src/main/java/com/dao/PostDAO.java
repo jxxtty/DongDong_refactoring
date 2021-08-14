@@ -41,9 +41,8 @@ public class PostDAO {
 		return template.delete("PostMapper.deletePostByPNum", pNum);
 	}
 
-	public int newPost(PostDTO post) {
+	public void newPost(PostDTO post) {
 		template.insert("PostMapper.newPost", post);
-		return post.getpNum();
 	}
 
 	public int updatePost(PostDTO dto) {

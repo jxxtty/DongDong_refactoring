@@ -91,32 +91,14 @@ public class PostController {
 		
 		String[] fileNames = getFileNameAndSaveFile(fileList, mDto.getUserid());
 		pDto.setpImage(fileNames[0]);
-		int pNum = pService.newPost(pDto);
-		if(fileNames.length != 1) { // 멀티파일의 경우
+		
+		if(fileNames.length != 1) { // 사진이 2개이상 들어온 경우
 			ImageDTO iDto = new ImageDTO();
 			iDto.setpImages(fileNames.length, fileNames);
-			iDto.setpNum(pNum);
-			System.out.println("iDto --> " + iDto.toString());
-			iService.newImages(iDto);
+			int iNum = iService.newImages(iDto);
+			pDto.setiNum(iNum);
 		}
-		
-		/*
-		 * String dbSave = ""; // db에 저장될 이미지파일이름의 조합 for(int i = 0 ; i <
-		 * fileList.size() ; i++) { MultipartFile mf = fileList.get(i); String
-		 * originalFileName = mf.getOriginalFilename(); // 원본파일 이름 String safeFile =
-		 * uploadPath + System.currentTimeMillis()+"_" + mDto.getUserid() +"_"+ i
-		 * +"_"+originalFileName;
-		 * 
-		 * String dbSaveFile = System.currentTimeMillis()+"_" + mDto.getUserid() +"_"+ i
-		 * +"_"+originalFileName; if(i == fileList.size()-1) { dbSave += dbSaveFile; }
-		 * else { dbSave += dbSaveFile+" "; }
-		 * 
-		 * try { mf.transferTo(new File(safeFile)); } catch (Exception e) {
-		 * e.printStackTrace(); } }
-		 */
-		/*
-		 * pDto.setpImage(dbSave); int n = pService.newPost(pDto);
-		 */
+		pService.newPost(pDto);
 		complaintLogger.info("PostController postWriteSuccess- userid: "+pDto.getUserid());
 		return "redirect:../"; // main으로 이동하는 경로
 	}

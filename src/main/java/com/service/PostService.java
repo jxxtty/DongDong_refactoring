@@ -33,9 +33,8 @@ public class PostService {
 		return pDAO.deletePostByPNum(pNum);
 	}
 
-	public int newPost(PostDTO post) {
-		int result = pDAO.newPost(post);
-		return result;
+	public void newPost(PostDTO post) {
+		pDAO.newPost(post);
 	}
 
 	public int updatePost(PostDTO dto) {

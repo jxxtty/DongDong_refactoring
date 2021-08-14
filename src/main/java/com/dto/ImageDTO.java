@@ -3,7 +3,6 @@ package com.dto;
 public class ImageDTO {
 	
 	private int iNum;
-	private int pNum;
 	private String pImage2;
 	private String pImage3;
 	private String pImage4;
@@ -13,10 +12,9 @@ public class ImageDTO {
 		super();
 	}
 
-	public ImageDTO(int iNum, int pNum, String pImage2, String pImage3, String pImage4, String pImage5) {
+	public ImageDTO(int iNum, String pImage2, String pImage3, String pImage4, String pImage5) {
 		super();
 		this.iNum = iNum;
-		this.pNum = pNum;
 		this.pImage2 = pImage2;
 		this.pImage3 = pImage3;
 		this.pImage4 = pImage4;
@@ -29,14 +27,6 @@ public class ImageDTO {
 
 	public void setiNum(int iNum) {
 		this.iNum = iNum;
-	}
-
-	public int getpNum() {
-		return pNum;
-	}
-
-	public void setpNum(int pNum) {
-		this.pNum = pNum;
 	}
 
 	public String getpImage2() {
@@ -73,10 +63,10 @@ public class ImageDTO {
 
 	@Override
 	public String toString() {
-		return "ImageDTO [iNum=" + iNum + ", pNum=" + pNum + ", pImage2=" + pImage2 + ", pImage3=" + pImage3
-				+ ", pImage4=" + pImage4 + ", pImage5=" + pImage5 + "]";
+		return "ImageDTO [iNum=" + iNum + ", pImage2=" + pImage2 + ", pImage3=" + pImage3 + ", pImage4=" + pImage4
+				+ ", pImage5=" + pImage5 + "]";
 	}
-	
+
 	// 편의 메서드
 	public void setpImages(int length, String[] fileNames) {
 		this.pImage2 = fileNames[1];

@@ -6,7 +6,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	
   	<insert id="newImages" parameterType="ImageDTO">
 		INSERT INTO image
-		VALUES (IMAGE_NUM.NEXTVAL, #{pNum}, #{pImage2}, #{pImage3, jdbcType = VARCHAR}, #{pImage4, jdbcType = VARCHAR}, #{pImage5, jdbcType = VARCHAR})
+		VALUES (IMAGE_NUM.NEXTVAL, #{pImage2}, #{pImage3, jdbcType = VARCHAR}, #{pImage4, jdbcType = VARCHAR}, #{pImage5, jdbcType = VARCHAR})
+		<selectKey keyProperty="iNum" resultType="int" order="AFTER"> 
+			SELECT IMAGE_NUM.CURRVAL FROM DUAL 
+		</selectKey>
 	</insert>
   	
 	

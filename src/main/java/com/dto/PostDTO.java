@@ -18,14 +18,15 @@ public class PostDTO {
 	private String pStatus;
 	private String pPull;
 	private String pModifiedDate;
-	
+	private int iNum;
 	
 	public PostDTO() {
 		super();
 	}
-
+	
 	public PostDTO(int pNum, String userid, String addr, String pCategory, String pTitle, String pContent, int pPrice,
-			String pImage, int pHit, String pDate, String pDateDiff, String pStatus, String pPull, String pModifiedDate) {
+			String pImage, int pHit, String pDate, String pDateDiff, String pStatus, String pPull, String pModifiedDate,
+			int iNum) {
 		super();
 		this.pNum = pNum;
 		this.userid = userid;
@@ -41,8 +42,9 @@ public class PostDTO {
 		this.pStatus = pStatus;
 		this.pPull = pPull;
 		this.pModifiedDate = pModifiedDate;
+		this.iNum = iNum;
 	}
-	
+
 	public int getpNum() {
 		return pNum;
 	}
@@ -155,14 +157,21 @@ public class PostDTO {
 	public void setpModifiedDate(String pModifiedDate) {
 		this.pModifiedDate = pModifiedDate;
 	}
+	
+	public int getiNum() {
+		return iNum;
+	}
+
+	public void setiNum(int iNum) {
+		this.iNum = iNum;
+	}
 
 	@Override
 	public String toString() {
 		return "PostDTO [pNum=" + pNum + ", userid=" + userid + ", addr=" + addr + ", pCategory=" + pCategory
 				+ ", pTitle=" + pTitle + ", pContent=" + pContent + ", pPrice=" + pPrice + ", pImage=" + pImage
 				+ ", pHit=" + pHit + ", pDate=" + pDate + ", pDateDiff=" + pDateDiff + ", pStatus=" + pStatus
-				+ ", pPull=" + pPull + ", pModifiedDate=" + pModifiedDate + "]";
+				+ ", pPull=" + pPull + ", pModifiedDate=" + pModifiedDate + ", iNum=" + iNum + "]";
 	}
 
-	
 }

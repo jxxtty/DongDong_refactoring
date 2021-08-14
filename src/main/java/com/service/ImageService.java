@@ -11,7 +11,7 @@ public class ImageService {
 	@Autowired
 	ImageDAO imageDAO;
 
-	public void newImages(ImageDTO iDto) {
-		imageDAO.newImages(iDto);
+	public int newImages(ImageDTO iDto) {
+		return imageDAO.newImages(iDto);
 	}
 }

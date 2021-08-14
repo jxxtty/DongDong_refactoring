@@ -11,8 +11,9 @@ public class ImageDAO {
 	@Autowired
 	SqlSessionTemplate template;
 
-	public void newImages(ImageDTO iDto) {
+	public int newImages(ImageDTO iDto) {
 		template.insert("ImageMapper.newImages", iDto);
+		return iDto.getiNum();
 	}
 	
 	
