@@ -136,11 +136,13 @@
 			<div class="mb-3 col-md-6 col-sm-8">
 				<div id="preview">
 					<c:forEach var="originImage" items="${imagesArr}">
+						<c:if test="${not empty originImage}">
 						<div style="display: inline-flex; padding: 10px;">
 							<li style="list-style:none;">
 								<img src="/Dong-Dong/images/${originImage}"  width=100 height=100 /><br>
 							</li>
 						</div>
+						</c:if>
 					</c:forEach>
 				</div>
 			</div>

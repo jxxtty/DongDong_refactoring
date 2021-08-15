@@ -12,5 +12,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</selectKey>
 	</insert>
   	
+  	<select id="getImageByINum" parameterType="int" resultType="ImageDTO">
+  		SELECT * FROM image WHERE iNum = #{iNum}
+  	</select>
 	
 </mapper>

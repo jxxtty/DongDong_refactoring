@@ -132,14 +132,34 @@ public class PostController {
 		String pContent = pDto.getpContent();
 		pContent = pContent.replaceAll("<br>", "\r\n");
 		pDto.setpContent(pContent);
-		// 이미지파일 파일명단위로 끊어서 배열에 넣기
+		// 이미지 관련 배열생성
 		String pImage = pDto.getpImage();
-		String[] images = pImage.split(" ");
 		
+		int iNum = pDto.getiNum(); 
+		String[] images = null;
+		if(iNum != 0) {
+			ImageDTO iDto = iService.getImageByINum(iNum);
+			images = getImageArr(iDto, pImage);
+		} else {
+			images = new String[1];
+			images[0] = pImage;
+		}
 		mav.addObject("imagesArr", images);
 		mav.addObject("postRetrieve", pDto);
 		mav.setViewName("postUpdate");
 		return mav;
+	}
+
+	public String[] getImageArr(ImageDTO iDto, String pImage) {
+		String[] images = new String[5];
+		
+		images[0] = pImage;
+		images[1] = iDto.getpImage2();
+		images[2] = iDto.getpImage3();
+		images[3] = iDto.getpImage4();
+		images[4] = iDto.getpImage5();
+		
+		return images;
 	}
 	
 	@RequestMapping(value="/loginCheck/postUpdate", method=RequestMethod.POST)
@@ -156,7 +176,6 @@ public class PostController {
 		String pPrice = mtfRequest.getParameter("pPrice"); // 수정하는 내용
 		String pContent = mtfRequest.getParameter("pContent"); // 수정하는내용
 		List<MultipartFile> fileList = mtfRequest.getFiles("file"); // 수정하는내용 -> 비어있다면 이미지는 수정하지 않는것.
-		
 		// 수정할 글자체의 정보
 		PostDTO pDto = pService.getPostByPNum(Integer.parseInt(pNum));
 		

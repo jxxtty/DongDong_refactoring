@@ -15,6 +15,10 @@ public class ImageDAO {
 		template.insert("ImageMapper.newImages", iDto);
 		return iDto.getiNum();
 	}
+
+	public ImageDTO getImageByINum(int iNum) {
+		return template.selectOne("ImageMapper.getImageByINum", iNum);
+	}
 	
 	
 }

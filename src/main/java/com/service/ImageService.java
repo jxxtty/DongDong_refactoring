@@ -14,4 +14,8 @@ public class ImageService {
 	public int newImages(ImageDTO iDto) {
 		return imageDAO.newImages(iDto);
 	}
+	
+	public ImageDTO getImageByINum(int iNum) {
+		return imageDAO.getImageByINum(iNum);
+	}
 }
