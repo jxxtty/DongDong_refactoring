@@ -241,13 +241,23 @@ public class PostController {
 		MemberDTO mDto = (MemberDTO)session.getAttribute("login");
 		PostDTO pDto = pService.getPostByPNum(Integer.parseInt(pNum));
 		
+		
 		if(mDto.getUserid().contentEquals(pDto.getUserid())) { // 로그인 정보와 삭제하려는 글의 id가 동일한 경우에만 삭제된다.
 			int deleteResult = pService.deletePostByPNum(Integer.parseInt(pNum));
 			
 			if(deleteResult==1) { // 게시글 삭제된 경우
 				// 삭제되는 게시글의 이미지도 삭제
-				String[] originalImages = pDto.getpImage().split(" ");
-				for(String s :originalImages) { 
+				int iNum = pDto.getiNum();
+				String[] images = null;
+				if(iNum != 0) {
+					ImageDTO iDto = iService.getImageByINum(iNum);
+					images = getImageArr(iDto, pDto.getpImage());
+				} else {
+					images = new String[1];
+					images[0] = pDto.getpImage();
+				}
+				
+				for(String s : images) { 
 					String deleteImg = uploadPath+s;
 					File file = new File(deleteImg); 
 					file.delete(); 
