@@ -199,10 +199,6 @@ public class MypageController {
 		MemberDTO dto =(MemberDTO)session.getAttribute("login");
 		String userid = dto.getUserid();
 		List<PostDTO> list = pService.mypostList(userid);
-		for(int i = 0 ; i < list.size() ; i++) {
-			String[] image = list.get(i).getpImage().split(" ");
-			list.get(i).setpImage(image[0]);
-		}
 		attr.addFlashAttribute("mypostList", list);
 		return "redirect:../mypostList";
 	}//내 게시물 보기
@@ -212,10 +208,6 @@ public class MypageController {
 		MemberDTO dto =(MemberDTO)session.getAttribute("login");
 		String userid = dto.getUserid();
 		List<MyOrderSheetDTO> list = oService.myordersheetList(userid);
-		for(int i = 0 ; i < list.size() ; i++) {
-			String[] image = list.get(i).getpImage().split(" ");
-			list.get(i).setpImage(image[0]);
-		}
 		attr.addFlashAttribute("ordersheetList", list);
 		return "redirect:../myordersheetList";
 	}// 주문서 발신함
@@ -239,10 +231,6 @@ public class MypageController {
 		MemberDTO dto =(MemberDTO)session.getAttribute("login");
 		String userid = dto.getUserid();
 		List<MyOrderSheetDTO> list = oService.ordersheetList(userid);
-		for(int i = 0 ; i < list.size() ; i++) {
-			String[] image = list.get(i).getpImage().split(" ");
-			list.get(i).setpImage(image[0]);
-		}
 		attr.addFlashAttribute("ordersheetList", list);
 		return "redirect:../ordersheetList";
 	}// 주문서 수신함
@@ -326,10 +314,6 @@ public class MypageController {
 		MemberDTO dto =(MemberDTO)session.getAttribute("login");
 		String userid = dto.getUserid();
 		List<PostDTO> plist = tService.purchaseList(userid);
-		for(int i = 0 ; i < plist.size() ; i++) {
-			String[] image = plist.get(i).getpImage().split(" ");
-			plist.get(i).setpImage(image[0]);
-		}
 		attr.addFlashAttribute("purchaseList", plist);
 		return "redirect:../BuyList";
 		//m.addAttribute("purchaseList", plist);
@@ -342,10 +326,6 @@ public class MypageController {
 		MemberDTO dto =(MemberDTO)session.getAttribute("login");
 		String userid = dto.getUserid();
 		List<PostDTO> slist = tService.saleList(userid);
-		for(int i = 0 ; i < slist.size() ; i++) {
-			String[] image = slist.get(i).getpImage().split(" ");
-			slist.get(i).setpImage(image[0]);
-		}
 		attr.addFlashAttribute("saleList", slist);
 		return "redirect:../SaleList";
 		//m.addAttribute("saleList", slist);

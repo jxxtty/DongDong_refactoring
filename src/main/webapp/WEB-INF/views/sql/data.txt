@@ -138,29 +138,35 @@ INSERT INTO post VALUES(POST_NUM.NEXTVAL, '6' , '명동' , 'E' , '좌물쇠' , '
 
 commit;
 
+INSERT INTO image(iNum, pImage2, pImage3) VALUES(IMAGE_NUM.NEXTVAL, '갤럭시북2.jpg', '갤럭시북3.jpg');
 INSERT INTO post VALUES(POST_NUM.NEXTVAL, '5' , '명동' , 'D' , '갤럭시 북12 노트북 i5 WIFI 판매합니다.' , 
 '제품명 :갤럭시북12(SM-W720NZKAKOO) WIFI<br>구성품: 본체, 키보드커버, S펜, 충전기<br><br>갤북 상태는 사진에서 보시는 바와 같이 매우 좋습니다.<br>매우 가볍고 성능이 좋아서 만족도는 최고인 모델입니다. <br><br>중고거래이니 직접 보시고 직거래를 했으면 합니다. 거래는 롯데백화점 본점근처 가능합니다.' 
-, 550000, '갤럭시북.jpg 갤럭시북2.jpg 갤럭시북3.jpg', 0 , SYSDATE,'0','3');
+, 550000, '갤럭시북.jpg', 0 , SYSDATE,'0','3', SYSDATE, IMAGE_NUM.CURRVAL);
 
 
+INSERT INTO image(iNum, pImage2) VALUES(IMAGE_NUM.NEXTVAL, '와플메이커2.jpg');
 INSERT INTO post VALUES(POST_NUM.NEXTVAL, '4' , '명동' , 'L' , 'bsw 와플메이커' , 
 '2번정도 사용한거 같습니다.<br><br>3만원대에 샀어요' 
-, 5000, '와플메이커.jpg 와플메이커2.jpg', 0 , SYSDATE,'0','3');
+, 5000, '와플메이커.jpg', 0 , SYSDATE,'0','3', SYSDATE, IMAGE_NUM.CURRVAL);
 
+
+INSERT INTO image VALUES(IMAGE_NUM.NEXTVAL, '에어랩2.jpg', '에어랩3.jpg', '에어랩4.jpg', '에어랩5.jpg');
 INSERT INTO post VALUES(POST_NUM.NEXTVAL, '4' , '명동' , 'BT' , '다이슨 에어랩 스타일러 볼륨앤쉐이프 레드' , 
 '박스는 개봉했지만 구매할 때 그대로 박스부터 구성품까지 그대로 있어요<br>구성품을 잘못보고 구매해서 팝니다ㅠ<br><br>정품등록 전이라 구매하시면 정품등록 하시면 되구요, 등록 후 2년간 AS가능합니다.<br>현재 다이슨 홈페이지 가격이 539,000원이고 인터넷 최저가도 49만원이 넘어요<br>같은 아파트단지면 직거래가능하구여 거리있으면 택배거래 선호합니다. 일을하고있어서ㅠ<br>연락주세요^^' 
-, 440000, '에어랩.jpg 에어랩2.jpg 에어랩3.jpg 에어랩4.jpg 에어랩5.jpg', 0 , SYSDATE,'0','3');
+, 440000, '에어랩.jpg', 0 , SYSDATE,'0','3', SYSDATE, IMAGE_NUM.CURRVAL);
 
 
 INSERT INTO post VALUES(POST_NUM.NEXTVAL, '6' , '명동' , 'H' , '(새상품)퀸매트리스 가져가세요' , 
 '새상품이구요.<br>저희집이랑 사이즈가 안맞아서 안쓰고팝니다<br>필요하신분 싸게가져가세요<br>포장지도 그대로입니다.<br>150X200cm<br>직접 오셔서 가져가셔야합니다' 
-, 50000, '매트리스.jpg', 0 , SYSDATE,'0','3');
+, 50000, '매트리스.jpg', 0 , SYSDATE,'0','3', SYSDATE, null);
 
+INSERT INTO image(iNum, pImage2, pImage3) VALUES (IMAGE_NUM.NEXTVAL, '에르메스향수2.jpg', '에르메스향수3.jpg');
 INSERT INTO post VALUES(POST_NUM.NEXTVAL, '8' , '명동' , 'BT' , '가격내림) 향수/에르메스 향수' , 
 '15ml×4개 (향은 두가지 / 2개씩 들어있어요!!)<br><br>19년도 10월 괌에서 구매<br>두개만 한번씩 시향 해보고 2개는 새거에요~<br>사진 그대로 포장 되어있구요 쇼핑백도 있어요~~!!<br>(백화점보다 저렴하게 내놓는거 참고해주세요~)<br><br>거래는 직거래만/ 을지로입구역<br>환불X 교환X' 
-, 75000, '에르메스향수.jpg 에르메스향수2.jpg 에르메스향수3.jpg', 0 , SYSDATE,'0','3');
+, 75000, '에르메스향수.jpg', 0 , SYSDATE,'0','3', SYSDATE, IMAGE_NUM.CURRVAL);
 
+INSERT INTO image(iNum, pImage2, pImage3, pImage4) VALUES (IMAGE_NUM.NEXTVAL, '유모차2.jpg', '유모차3.jpg', '유모차4.jpg');
 INSERT INTO post VALUES(POST_NUM.NEXTVAL, '9' , '명동' , 'BY' , '스토케 v3 익스플로리 유모차' , 
 '상태 좋아요.깨끗하게 잘썼어요. 업소에 세탁 맡긴후 몇 번 못타봤어요.<br><br>구성은 사진에 나와있어요.<br>신생아패드, 가방, 양산, 레인커버, 맘네스트 바람커버, 발판, 안전손잡이, 여름용시트<br><br>명동성당근처에서 거래가능해요.' 
-, 150000, '유모차.jpg 유모차2.jpg 유모차3.jpg 유모차4.jpg', 0 , SYSDATE,'0','3');
+, 150000, '유모차.jpg', 0 , SYSDATE,'0','3', SYSDATE, IMAGE_NUM.CURRVAL);
 commit;
