@@ -176,6 +176,8 @@ public class PostController {
 		String pPrice = mtfRequest.getParameter("pPrice"); // 수정하는 내용
 		String pContent = mtfRequest.getParameter("pContent"); // 수정하는내용
 		List<MultipartFile> fileList = mtfRequest.getFiles("file"); // 수정하는내용 -> 비어있다면 이미지는 수정하지 않는것.
+		int isChange = Integer.parseInt(mtfRequest.getParameter("isChange")); // 이미지 파일 변경여부를 나타낸다.
+
 		// 수정할 글자체의 정보
 		PostDTO pDto = pService.getPostByPNum(Integer.parseInt(pNum));
 		
@@ -187,54 +189,46 @@ public class PostController {
 			updateDto.setpNum(pDto.getpNum()); // 글번호
 			updateDto.setpCategory(pCategory); // 카테고리
 			updateDto.setpTitle(pTitle); // 제목
-			// 글내용 줄바꿈 파싱
-			pContent = pContent.replaceAll("\r\n", "<br>");
+			pContent = pContent.replaceAll("\r\n", "<br>"); // 글내용 줄바꿈 파싱
 			updateDto.setpContent(pContent); // 글내용
 			updateDto.setpPrice(Integer.parseInt(pPrice)); // 가격
 			updateDto.setpStatus(pDto.getpStatus());
 			updateDto.setpPull(pDto.getpPull());
 			updateDto.setpHit(pDto.getpHit());
 				
-			int flag = 0;
-			String dbSave = "";// db에 저장될 이미지파일이름의 조합
-			for(int i = 0 ; i < fileList.size() ; i++) {
-				MultipartFile mf = fileList.get(i);
-				String originalFileName = mf.getOriginalFilename(); // 원본파일 이름
-				if(originalFileName.length() == 0) {
-					flag++;
-					break;
-				}
-				String safeFile = uploadPath + System.currentTimeMillis()+"_" + mDto.getUserid() +"_"+ i +"_"+originalFileName;
-				
-				String dbSaveFile = System.currentTimeMillis()+"_" + mDto.getUserid() +"_"+ i +"_"+originalFileName;
-				if(i == fileList.size()-1) {
-					dbSave += dbSaveFile;
-				} else {
-					dbSave += dbSaveFile+" ";
-				}
-				try {
-					mf.transferTo(new File(safeFile));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			
-			if(flag == 1) { // 이미지 수정이 없어서 반복문수행안하고 나온경우
+			if(isChange == 0) { // 이미지 파일 변경 없음
 				updateDto.setpImage(pDto.getpImage());
-			} else {
-				// 이미지가 수정된 경우 기존이미지파일들은 삭제해준다.
-				String[] originalImages = pDto.getpImage().split(" "); 
-				for(String s :originalImages) { 
-					String deleteImg = uploadPath+s;
-					File file = new File(deleteImg); 
-					file.delete(); 
+				updateDto.setiNum(pDto.getiNum());
+				pService.updatePost(updateDto);
+			} else { // 이미지 파일 변경 있음
+				// 1. 받아온 이미지 파일 저장
+				String[] fileNames = getFileNameAndSaveFile(fileList, mDto.getUserid());
+				updateDto.setpImage(fileNames[0]);
+				
+				if(fileNames.length != 1) { // 사진이 2개이상 들어온 경우
+					ImageDTO iDto = new ImageDTO();
+					iDto.setpImages(fileNames.length, fileNames);
+					int iNum = iService.newImages(iDto);
+					updateDto.setiNum(iNum);
 				}
-				updateDto.setpImage(dbSave);
+				
+				// 2. 기존 이미지 파일 삭제
+				int pDtoINum = pDto.getiNum();
+				if(pDtoINum != 0) { // 다중파일이야
+					ImageDTO iDto = iService.getImageByINum(pDtoINum);
+					String[] originalImages = getImageArr(iDto, pDto.getpImage());
+					for(String s :originalImages) {
+						if(s == null) break;
+						String deleteImg = uploadPath+s;
+						File file = new File(deleteImg); 
+						file.delete(); 
+					}
+					// updateDto에 저장된 내용으로 글내용 수정한다.
+					pService.updatePost(updateDto);
+					iService.deleteByINum(pDtoINum);
+				}
 			}
-			
-			// updateDto에 저장된 내용으로 글내용 수정한다.
-			int n = pService.updatePost(updateDto);
-		
+
 		}
 		
 		return "redirect:../postDetail?pNum="+pDto.getpNum();

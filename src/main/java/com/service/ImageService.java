@@ -18,4 +18,8 @@ public class ImageService {
 	public ImageDTO getImageByINum(int iNum) {
 		return imageDAO.getImageByINum(iNum);
 	}
+
+	public void deleteByINum(int iNum) {
+		imageDAO.deleteByINum(iNum);
+	}
 }

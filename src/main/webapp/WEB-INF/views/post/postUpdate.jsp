@@ -47,7 +47,8 @@
 			      var files = e.target.files;
 			      var arr =Array.prototype.slice.call(files);
 			      
-			      preview(arr);   
+			      preview(arr);
+			      $('#isChange').val('1');
 			});//file change
 			
 			$("form").on("submit",function(event){
@@ -155,6 +156,7 @@
   				<label for="formFile" class="form-label">판매할 상품 사진</label>
   				<input class="form-control" type="file" id="photo" name="file" multiple
   					accept="image/gif,image/jpg,image/png,image/jpeg" onchange="onSelect(this);">
+  				<input type="hidden" value="0" name="isChange" id="isChange">
 			</div>
 			<div class="col-md-3 col-sm-2"></div>
 		</div>

@@ -19,6 +19,10 @@ public class ImageDAO {
 	public ImageDTO getImageByINum(int iNum) {
 		return template.selectOne("ImageMapper.getImageByINum", iNum);
 	}
+
+	public void deleteByINum(int iNum) {
+		template.delete("ImageMapper.deleteByINum", iNum);
+	}
 	
 	
 }

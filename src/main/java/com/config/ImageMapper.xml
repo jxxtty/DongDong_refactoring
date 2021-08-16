@@ -16,4 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		SELECT * FROM image WHERE iNum = #{iNum}
   	</select>
 	
+	<delete id="deleteByINum" parameterType="int">
+		DELETE FROM image WHERE iNum=#{iNum}
+	</delete>
 </mapper>

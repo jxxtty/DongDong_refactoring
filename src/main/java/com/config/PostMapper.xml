@@ -75,7 +75,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="updatePost" parameterType="PostDTO">
 		update post 
-		set pTitle=#{pTitle},pContent=#{pContent},pPrice=#{pPrice},pImage=#{pImage},pCategory=#{pCategory},pModifiedDate=SYSDATE
+		set pTitle=#{pTitle},pContent=#{pContent},pPrice=#{pPrice},pImage=#{pImage},pCategory=#{pCategory},
+			pModifiedDate=SYSDATE,iNum=#{iNum, jdbcType = INTEGER}
 		where pNum=#{pNum}
 	</update>
 	
