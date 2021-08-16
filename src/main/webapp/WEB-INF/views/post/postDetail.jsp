@@ -110,11 +110,13 @@
   				<div class="card text-dark my-0 py-0" id="multiImgDiv" style="border: none; ">
       				<div class="align-items-center" id="multiImage">
       					<c:forEach var="originImage" items="${imageDetail}">
-							<div style="display: inline-flex; padding-top: 10px; padding-right: 10px;">
-								<li style="list-style:none;">
-									<img src="/Dong-Dong/images/${originImage}" class="multiImageOne" width="100" height="100" /><br>
-								</li>
-							</div>
+      						<c:if test="${not empty originImage}">
+								<div style="display: inline-flex; padding-top: 10px; padding-right: 10px;">
+									<li style="list-style:none;">
+										<img src="/Dong-Dong/images/${originImage}" class="multiImageOne" width="100" height="100" /><br>
+									</li>
+								</div>
+							</c:if>
 						</c:forEach>
 					</div>
     			</div>

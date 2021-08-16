@@ -391,15 +391,21 @@ public class PostController {
     		mav.addObject("pStatus", pDTO.getpStatus());
     		
     		// 다중파일 대비 이미지파싱
-    		String[] originalImages = pDTO.getpImage().split(" ");
-    		mav.addObject("imageDetail", originalImages);
-    		
-    		// 다중파일인 경우 postDetail에서 추가부분이 있어 구분자로 넣어줌
-    		if(originalImages.length == 1) { 
+    		int iNum = pDTO.getiNum();
+    		String[] fileNames = null;
+    		if(iNum == 0) {
     			mav.addObject("isMultiFile","N");
+    			fileNames = new String[1];
+    			fileNames[0] = pDTO.getpImage();
     		} else {
     			mav.addObject("isMultiFile","Y");
+    			ImageDTO iDto = iService.getImageByINum(iNum);
+    			fileNames = getImageArr(iDto, pDTO.getpImage());
     		}
+    		
+    		mav.addObject("imageDetail", fileNames);
+    		
+    		
     		
     		mav.addObject("pImage", pDTO.getpImage());
     		switch (pDTO.getpCategory()) {
